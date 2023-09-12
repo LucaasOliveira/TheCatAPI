@@ -1,0 +1,14 @@
+body{
+    margin: 0;
+    
+}
+
+.menu {
+    height: 6em;
+    width: 100vw;
+    background-color: #bbb;
+}
+
+.card{
+    width: 200px;
+}
