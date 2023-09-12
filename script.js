@@ -27,6 +27,12 @@ axios.get("https://api.thecatapi.com/v1/images/search?api_key=live_SZgisQ7fCM4pD
         //manipular erro
     })
 
+breedSelect.addEventListener("change", () => {
+    const selectedBreedId = breedSelect.value;
+    if (selectedBreedId) {
+        fetchCatImagesByBreed(selectedBreedId);
+    }
+});
 
 const card = document.querySelector(".card");
 
