@@ -7,6 +7,8 @@ body{
     height: 6em;
     width: 100vw;
     background-color: #bbb;
+    display: flex;
+    justify-content: center;
 }
 
 .card{
