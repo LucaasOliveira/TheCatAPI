@@ -7,7 +7,8 @@
 .menu {
     height: 10vh;
     width: 100vw;
-    background-color: #bbb;
+    background: rgb(2,0,36);
+
     display: flex;
     justify-content: center;
 }
@@ -16,6 +17,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    color: #ffffff;
 }
 
 select, label {
@@ -42,7 +44,14 @@ select, label {
     max-height: 50rem;
     margin-bottom: 5rem;
 
-    border: 1px solid red;
+    border: 2px solid #000;
+    border-radius: 10%;
+
+    background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(237,237,237,1) 33%);
+}
+
+.mudei-display {
+    display: flex;
 }
 
 img {
@@ -69,4 +78,23 @@ footer {
 
 footer p {
     font-size: 0.8rem;
+}
+
+.animation-container {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    bottom: 0 ;
+    right: 0;
+    animation: moveImage 20s;
+
+}
+
+@keyframes moveImage {
+    0% {
+        bottom: -40%;
+    }
+    100% {
+        bottom: 0%; 
+    }
 }
