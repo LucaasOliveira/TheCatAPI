@@ -21,6 +21,9 @@ async function start() {
     }
 }
 
+async function fetchCatImages(selectedBreedId) {
+    const apiUrl = `https://api.thecatapi.com/v1/images/search?limit=1&breed_ids=${selectedBreedId}&api_key=live_SZgisQ7fCM4pD5We0Bbyj0CdX58Hy0mtGoMwMNrxP8uUM3VtRDpxd8XjRjvEKydZ`;
+
     try {
         const response = await axios.get(apiUrl);
         const data = response.data;
@@ -34,9 +37,10 @@ async function start() {
             cards.appendChild(catImage);
         });
     } catch (error) {
-        console.error("Erro ao acessar a API:", error);
+        alert("Erro ao acessar a API:");
     }
 }
+
 
 const breedSelect = document.querySelector("select");
 
