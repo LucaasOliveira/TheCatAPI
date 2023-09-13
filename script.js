@@ -41,6 +41,28 @@ async function fetchCatImages(selectedBreedId) {
     }
 }
 
+async function fetchBreedInfo(selectedBreedId) {
+    const breedInfoUrl = `https://api.thecatapi.com/v1/breeds/${selectedBreedId}`;
+
+    try {
+        const response = await axios.get(breedInfoUrl);
+        const breedData = response.data;
+
+        const breedInfo = document.querySelector(".breed-info");
+        breedInfo.innerHTML = "";
+
+        const name = document.createElement("h3");
+        name.textContent = `Nome da Raça: ${breedData.name}`;
+        name.style.marginBottom = "1rem";
+        breedInfo.appendChild(name);
+
+        const description = document.createElement("p");
+        description.textContent = `Descrição: ${breedData.description}`;
+        breedInfo.appendChild(description);
+    } catch {
+        alert("Erro ao acessar informações da raça:");
+    }
+}
 
 const breedSelect = document.querySelector("select");
 
