@@ -68,8 +68,20 @@ const breedSelect = document.querySelector("select");
 
 breedSelect.addEventListener("change", () => {
     const selectedBreedId = breedSelect.value;
+    const cards = document.querySelector(".cards");
+    const breedInfo = document.querySelector(".breed-info");
+    const testeGambiarra = document.querySelector(".container-card");
+
+
     if (selectedBreedId) {
-        fetchCatImagesByBreed(selectedBreedId);
+        fetchCatImages(selectedBreedId);
+        fetchBreedInfo(selectedBreedId);
+        testeGambiarra.style.display = "flex";
+
+    } else {
+        cards.innerHTML = "";
+        breedInfo.innerHTML = "";
+        testeGambiarra.style.display = "none";
     }
 });
 
