@@ -1,10 +1,11 @@
-*{
+* {
     margin: 0;
-    padding: 0;    
+    padding: 0;  
+    font-family: 'Raleway', sans-serif;  
 }
 
 .menu {
-    height: 6rem;
+    height: 10vh;
     width: 100vw;
     background-color: #bbb;
     display: flex;
@@ -17,10 +18,55 @@
     align-items: center;
 }
 
-select {
-    width: 10rem;
+select, label {
+    font-size: 1.5rem;
+    width: 15rem;
+}
+
+.container-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    min-height: 85vh;
+    max-height:200vh;
+}
+
+.container-card {
+    display: none;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    max-width: 40rem;
+    max-height: 50rem;
+    margin-bottom: 5rem;
+
+    border: 1px solid red;
 }
 
 img {
-    width: 20rem;
+    max-width: 20rem;
+    max-height: 20rem;
+    border-radius: 10%;
+}
+
+section {
+    margin: 20px 0;
+    padding: 20px 20px;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position:sticky;
+    width: 100vw;
+
+    height: 5vh;
+}
+
+footer p {
+    font-size: 0.8rem;
 }
