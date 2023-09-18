@@ -1,3 +1,4 @@
+
 async function start() {
     const breedsUrl = "https://api.thecatapi.com/v1/breeds";
 
@@ -14,6 +15,7 @@ async function start() {
             const option = document.createElement("option");
             option.value = breed.id;
             option.text = breed.name;
+
             breedSelect.appendChild(option);
         });
     } catch {
@@ -48,21 +50,48 @@ async function fetchBreedInfo(selectedBreedId) {
         const response = await axios.get(breedInfoUrl);
         const breedData = response.data;
 
+        const translatedName = await translateText(breedData.name, "en", "pt-br");
+
+        const translatedDescription = await translateText(breedData.description, "en", "pt-br");
+
         const breedInfo = document.querySelector(".breed-info");
         breedInfo.innerHTML = "";
 
         const name = document.createElement("h3");
-        name.textContent = `Nome da Raça: ${breedData.name}`;
+        name.textContent = `Nome da Raça: ${translatedName}`;
         name.style.marginBottom = "1rem";
         breedInfo.appendChild(name);
 
         const description = document.createElement("p");
-        description.textContent = `Descrição: ${breedData.description}`;
+        description.textContent = `Descrição: ${translatedDescription}`;
         breedInfo.appendChild(description);
-    } catch {
-        alert("Erro ao acessar informações da raça:");
+    } catch (error) {
+        alert("Erro ao acessar informações da raça:", error);
     }
 }
+
+async function translateText(text, sourceLanguage, targetLanguage) {
+    const translationUrl = "https://api.edenai.run/v2/translation/automatic_translation";
+
+    try {
+        const response = await axios.post(translationUrl, {
+            providers: "amazon,google,ibm,microsoft",
+            text: text,
+            source_language: sourceLanguage,
+            target_language: targetLanguage,
+        }, {
+            headers: {
+                authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiOTFmMjYzMmUtYmYwOS00MDk5LWFhZDYtNWI4ZDNiMTc3Y2E2IiwidHlwZSI6ImFwaV90b2tlbiJ9.UoF8wXN1gbpn4kPb7IUxX8y709PucOkcNLF-y8ANtPs",
+            },
+        });
+
+        return response.data.ibm.text;
+    } catch (error) {
+        console.log("Erro na tradução:", error);
+        return text; 
+    }
+}
+
 
 const breedSelect = document.querySelector("select");
 
